@@ -24,7 +24,8 @@
     <h1>Switching Between Multiple GitHub Accounts in Git Bash</h1>
     
     <h2>Step 1: Remove All Loaded SSH Keys</h2>
-    <pre><button class="copy-btn" onclick="copyToClipboard(this)">Copy</button><code>ssh-add -D</code></pre>
+    <pre><button class="copy-btn" onclick="copyToClipboard(this)">Copy</button><code>eval "$(ssh-agent -s)"
+        ssh-add -D</code></pre>
 
     <h2>Step 2: Add the SSH Key for the Desired GitHub Account</h2>
     <h3>For Primary GitHub Account</h3>
