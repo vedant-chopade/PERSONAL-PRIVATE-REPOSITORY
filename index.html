@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Switching Between Multiple GitHub Accounts</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; }
+        code { background: #f4f4f4; padding: 4px; border-radius: 4px; }
+        pre { background: #f4f4f4; padding: 10px; border-radius: 4px; overflow-x: auto; position: relative; display: flex; align-items: center; }
+        .copy-btn { background: #007bff; color: white; border: none; padding: 5px; cursor: pointer; border-radius: 4px; margin-right: 10px; }
+    </style>
+    <script>
+        function copyToClipboard(button) {
+            const text = button.nextElementSibling.innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                button.textContent = "Copied!";
+                setTimeout(() => button.textContent = "Copy", 2000);
+            }).catch(err => console.error("Error copying text: ", err));
+        }
+    </script>
+</head>
+<body>
+    <h1>Switching Between Multiple GitHub Accounts in Git Bash</h1>
+    
+    <h2>Step 1: Remove All Loaded SSH Keys</h2>
+    <pre><button class="copy-btn" onclick="copyToClipboard(this)">Copy</button><code>ssh-add -D</code></pre>
+
+    <h2>Step 2: Add the SSH Key for the Desired GitHub Account</h2>
+    <h3>For Primary GitHub Account</h3>
+    <pre><button class="copy-btn" onclick="copyToClipboard(this)">Copy</button><code>ssh-add ~/.ssh/id_ed25519</code></pre>
+    <h3>For Secondary GitHub Account</h3>
+    <pre><button class="copy-btn" onclick="copyToClipboard(this)">Copy</button><code>ssh-add ~/.ssh/id_ed25519_secondary</code></pre>
+
+    <h2>Step 3: Verify the Loaded SSH Key</h2>
+    <pre><button class="copy-btn" onclick="copyToClipboard(this)">Copy</button><code>ssh-add -l</code></pre>
+    
+    <h2>Step 4: Test SSH Connection to GitHub</h2>
+    <h3>For Primary GitHub Account</h3>
+    <pre><button class="copy-btn" onclick="copyToClipboard(this)">Copy</button><code>ssh -T git@github.com</code></pre>
+    <h3>For Secondary GitHub Account</h3>
+    <pre><button class="copy-btn" onclick="copyToClipboard(this)">Copy</button><code>ssh -T git@github-second</code></pre>
+
+    <h2>Step 5: Configure Git User for Each Account</h2>
+    <h3>Set Git User for Primary Account</h3>
+    <pre><button class="copy-btn" onclick="copyToClipboard(this)">Copy</button><code>git config --global user.name "Primary Username"
+git config --global user.email "primary-email@example.com"</code></pre>
+    <h3>Set Git User for Secondary Account</h3>
+    <pre><button class="copy-btn" onclick="copyToClipboard(this)">Copy</button><code>git config --global user.name "Secondary Username"
+git config --global user.email "secondary-email@example.com"</code></pre>
+
+    <h2>Step 6: Clone or Push Repositories with the Correct Account</h2>
+    <h3>Clone a repo using the primary account</h3>
+    <pre><button class="copy-btn" onclick="copyToClipboard(this)">Copy</button><code>git clone git@github.com:primary-username/repository-name.git</code></pre>
+    <h3>Clone a repo using the secondary account</h3>
+    <pre><button class="copy-btn" onclick="copyToClipboard(this)">Copy</button><code>git clone git@github-second:secondary-username/repository-name.git</code></pre>
+    
+    <h2>Switching Between Accounts</h2>
+    <p>Whenever you need to switch accounts, repeat these steps from <strong>Step 1</strong>.</p>
+</body>
+</html>
